@@ -1,3 +1,4 @@
+using ClinicWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicWebAPI.Controllers
@@ -6,10 +7,17 @@ namespace ClinicWebAPI.Controllers
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
+        private readonly IAppointmentsService _appointmentsService;
+
+        public AppointmentsController(IAppointmentsService appointmentsService)
+        {
+            _appointmentsService = appointmentsService;
+        }
+        
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var appointments = _service.GetAllAppointments();
+            var appointments = await _appointmentsService.GetAllAppointmentsAsync();
             return Ok(appointments);
         }
     }
