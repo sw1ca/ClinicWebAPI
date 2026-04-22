@@ -4,5 +4,5 @@ namespace ClinicWebAPI.Services;
 
 public interface IAppointmentsService
 {
-    Task<AppointmentListDto> GetAllAppointmentsAsync();
+    Task<AppointmentListDto> GetAllAppointmentsAsync(string? status, string? patientLastName);
 }
