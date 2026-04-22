@@ -15,10 +15,10 @@ namespace ClinicWebAPI.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] string? status, [FromQuery] string? patientLastName)
         {
-            var appointments = await _appointmentsService.GetAllAppointmentsAsync();
-            return Ok(appointments);
+            var result = await _appointmentsService.GetAllAppointmentsAsync(status, patientLastName);
+            return Ok(result);
         }
     }
 }
